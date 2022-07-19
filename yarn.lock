@@ -109,10 +109,10 @@ delayed-stream@~1.0.0:
   resolved "https://registry.yarnpkg.com/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
   integrity sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==
 
-disney.js@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/disney.js/-/disney.js-0.1.2.tgz#112cc56781889a074f189fa6ff881b5162deeb5d"
-  integrity sha512-4H2QOYaBt7KSCEmElvQZ/RSX5z0/KAhRovWl96LC4mNgwd/Fg8tKDz2IqoR5dwJiJMOjihoISTG65ehO5nnq0g==
+disney.js@0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/disney.js/-/disney.js-0.1.4.tgz#c227c53d3ab180831a60e379b170701c49d3b5a7"
+  integrity sha512-9GcUPV7GtY5W708+X41VtTq+PxHUuwI783NVaKovmuZr69JHudXEs/WMGEEiACMxBifmW2eJaHDzWZ5b1j3bpw==
   dependencies:
     axios "^0.27.2"
     common-tags "^1.8.2"

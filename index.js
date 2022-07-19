@@ -1,48 +1,51 @@
-const {
-  default: axios
-} = require('axios');
-const {
-  MessageClient,
-  MarkdownBuilder
-} = require('disney.js');
+
+const axios = require('axios')
+const {MarkdownBuilder, MessageAction, MessageButton, MessageClient} = require('disney.js')
 
 const key = '589f71e9a8e3406d99034020221207';
 
 class WeatherClient extends MessageClient {
-  async getToday(country) {
-    try {
-      const res = await axios.get(`http://api.weatherapi.com/v1/current.json?key=${key}&q=${country}&days=7`)
-      const getIcon = () => {
-        switch (res.data.current.condition.text) {
-          case 'Sunny':
-            return '☀️';
-          case 'Cloudy':
-            return '☁️';
-          case 'Rain':
-            return '🌧';
-          case 'Snow':
-            return '🌨';
-          case 'Thunderstorm':
-            return '⛈';
-          case 'Mist':
-            return '🌫';
-          default:
-            return '🌧';
+  async getToday() {
+    const countries = ['Vietnam', 'Japan', 'China', 'Korea', 'Thailand', 'Singapore', 'Australia'];
+    const action = new MessageAction()
+    countries.forEach(c => action.addButton(new MessageButton().setName(c)))
+
+    const message = await this.message.send({ content: '1234', action })
+
+    action.onButtonClick(async (button) => {
+      for (const country of countries) {
+        if (button.name === country) {
+          const res = await axios.get(`http://api.weatherapi.com/v1/current.json?key=${key}&q=${country}&days=7`)
+          const getIcon = () => {
+            switch (res.data.current.condition.text) {
+              case 'Sunny':
+                return '☀️';
+              case 'Cloudy':
+                return '☁️';
+              case 'Rain':
+                return '🌧';
+              case 'Snow':
+                return '🌨';
+              case 'Thunderstorm':
+                return '⛈';
+              case 'Mist':
+                return '🌫';
+              default:
+                return '🌧';
+            }
+          }
+          message.edit({
+            content: MarkdownBuilder.tag`
+              ### ${res.data.location.name} ${getIcon()}
+              Current temperature is ${res.data.current.temp_c}°C
+            `,
+          })
         }
       }
-      this.message.send({
-        content: MarkdownBuilder.tag`
-          ### ${res.data.location.name} ${getIcon()}
-          Current temperature is ${res.data.current.temp_c}°C
-        `,
-      })
-    } catch (e) {
-      console.error(e)
-    }
+    })
   }
 }
 
-
 const client = new WeatherClient();
 
-await client.login('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJib3RJZCI6ImQ5YTA2NmNmLTdkYzUtNGNiNy04YWY5LTQ2ZDk1YWM0YWUzZCIsImlhdCI6MTY1NzU5ODIzN30.qyaGWlf2tyC5vNKGyjvjmz-o7KvOZr1W8khpOuTFLes');
+client.login('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJib3RJZCI6ImZhY2NjZmZjLThkMDUtNDA5MC1hMWNmLTM3OWQ5ODM4OWM0YiIsImlhdCI6MTY1ODIwMTk4Mn0.gRyBAj3MmvIBoNQFk5XJrD0kcFGfjgtJIFMYu2dEE3Q');
