@@ -48,4 +48,4 @@ class WeatherClient extends MessageClient {
 
 const client = new WeatherClient();
 
-client.login('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJib3RJZCI6ImZhY2NjZmZjLThkMDUtNDA5MC1hMWNmLTM3OWQ5ODM4OWM0YiIsImlhdCI6MTY1ODIwMTk4Mn0.gRyBAj3MmvIBoNQFk5XJrD0kcFGfjgtJIFMYu2dEE3Q');
+client.login('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJib3RJZCI6Ijk3NWNkZTdhLTBiMWItNDVjZC05OGI2LTg1YzNhMGEzMTVkZiIsImlhdCI6MTY2MDQ4MTQ5NH0.mxtlNbTwUOm7fG9CxEhvDePOYvGL0_Kqp39SV-0nQas');
